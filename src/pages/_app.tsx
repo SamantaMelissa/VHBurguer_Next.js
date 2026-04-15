@@ -2,9 +2,20 @@
 // O que normalmente vai aqui:
 // CSS global
 // Layout padrão (header, footer)
-// import "@/styles/globals.css";
+import "@/styles/globals.css";
 import type { AppProps } from "next/app";
+import { Fredoka } from "next/font/google";
+
+const fredoka = Fredoka({
+  variable: "--font-padrao",
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+});
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <main className={fredoka.variable}>
+      <Component {...pageProps} />
+    </main>
+  )
 }
