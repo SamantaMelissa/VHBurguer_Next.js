@@ -1,4 +1,4 @@
-#header{
+#header {
     height: 10vh;
 
     background-color: var(--fundo-claro);
@@ -7,19 +7,19 @@
     justify-content: center;
 }
 
-.container{
+.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
 }
 
-#nav_menu{
+#nav_menu {
     display: flex;
     gap: 25px;
 }
 
-#nav_menu a{
+#nav_menu a {
     text-decoration: none;
     color: var(--vinho);
     font-weight: 500;
@@ -27,14 +27,31 @@
     font-size: 16px;
 }
 
-#nav_menu a:hover{
+#nav_menu a:hover {
     color: var(--laranja-destaque);
 }
 
-#logo{
+#logo {
     width: 250px;
 }
 
-#btn_icon{
+#btn_icon {
     display: none;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    #btn_icon {
+        display: block;
+        height: 40px;
+    }
+
+    #nav_menu {
+        display: none;
+    }
+
+    #logo {
+        width: 200px;
+    }
+
 }
