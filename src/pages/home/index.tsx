@@ -1,8 +1,10 @@
+import Header from "@/components/header/header";
+
 //ESTRUTURA PADRÃO!
 const Home = () => {
     return (
         <>
-           <p>aaaaaaaaaaaa</p>
+           <Header/>
         </>
     )
 }
