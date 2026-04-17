@@ -14,8 +14,10 @@
     --fonte-escura: #000000;
 
 
-    --tamanho-titulo: 50px;
+    --tamanho-titulo: 60px;
+    --tamanho-subtitulo: 50px;
     --tamanho-texto-btn: 17px;
+    --fonte-texto: 17px;
 }
 
 .layout_guide{
