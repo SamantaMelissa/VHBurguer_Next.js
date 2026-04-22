@@ -29,12 +29,12 @@
     box-shadow: 0 4px 0 rgba(0, 0, 0, .18);
 }
 
-#btn_filtrar__text {
-    font-size: var(--fonte-botao);
+#btn_filtrar_text {
+    font-size: var( --tamanho-texto-btn);
     font-weight: 500;
 }
 
-#btn_filtrar__icon {
+#btn_filtrar_icon {
     width: 25px;
     height: 25px;
     flex: 0 0 auto;
@@ -45,7 +45,7 @@
     gap: 20px;
 }
 
-.btn_home button {
+#btn_cardapio button {
     padding: 8px 20px;
     border: 0;
     border-radius: 10px;
@@ -57,12 +57,12 @@
     cursor: pointer;
 
 
-    font-size: var(--fonte-botao);
+    font-size: var( --tamanho-texto-btn);
     font-weight: 500;
 
 }
 
-.campo_btn {
+#campo_btn {
     display: flex;
     width: 100%;
     justify-content: space-between;
