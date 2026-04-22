@@ -1,99 +1,53 @@
-#filtros {
-    /* width: 100%; */
+#botoes_home {
+    width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-/* botão com icon */
-#filtros button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-
+.botao {
     padding: 8px 20px;
     border: 0;
     border-radius: 10px;
-
     background: var(--laranja-destaque);
-
     color: var(--fundo-escuro);
-
     cursor: pointer;
-    /* box-shadow: 0 8px 0 rgba(0, 0, 0, .18); */
     transition: transform .06s ease, box-shadow .06s ease;
+    font-size: var(--tamanho-texto-btn);
 }
 
-#filtros button:active {
+.botao:active {
     transform: translateY(4px);
     box-shadow: 0 4px 0 rgba(0, 0, 0, .18);
 }
 
-#btn_filtrar_text {
-    font-size: var( --tamanho-texto-btn);
-    font-weight: 500;
-}
-
-#btn_filtrar_icon {
-    width: 25px;
-    height: 25px;
-    flex: 0 0 auto;
-}
-
-.btn_home {
+#botoes_direita {
+    width: 50%;
     display: flex;
+    justify-content: flex-end;
     gap: 20px;
 }
 
-#btn_cardapio button {
-    padding: 8px 20px;
-    border: 0;
-    border-radius: 10px;
-
-    background: var(--laranja-destaque);
-
-    color: var(--fundo-escuro);
-
-    cursor: pointer;
-
-
-    font-size: var( --tamanho-texto-btn);
-    font-weight: 500;
-
-}
-
-#campo_btn {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-}
-
-
-
-/* fechamento do botão com icon */
-
-.cards_produtos {
-
-    /* display: grid; */
-    /* grid-template-columns: repeat(3, 1fr); */
+#cards_produtos {
     display: grid;
     grid-template-columns: 1fr;
-    /* Mobile primeiro */
     gap: 80px;
-    /* gap: 100px; */
-    /* display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 50px; */
-
 }
 
-@media (max-width: 1000px) {
-    .campo_btn {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        gap: 20px;
+/* RESPONSIVIDADE: */
+@media (max-width: 768px) {
+    #botoes_home {
+        max-width: 500px;
     }
+}
 
+@media (min-width: 768px) {
+    #cards_produtos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1200px) {
+    #cards_produtos {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
