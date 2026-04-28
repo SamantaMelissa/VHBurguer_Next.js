@@ -1,18 +1,36 @@
 import { useState } from "react";
 import styles from "./login.module.css";
 import { login } from "../api/authService";
+import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from 'react-toastify';
+
 const Login = () => {
-    
+
     const [email, setEmail] = useState<string>("");
     const [senha, setSenha] = useState<string>("");
 
-    function autenticar(e: React.FormEvent<HTMLFormElement>){
+    const router = useRouter();
+    const notificacao = (msg: string) => toast(msg);
+    const erro = (msg: string) => toast.error(msg);
+
+    async function autenticar(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        login(email, senha);
-    } 
+        try {
+            await login(email, senha);
+            notificacao("Login bem sucedido!")
+
+            setTimeout(() => {
+                router.push("/home");
+            }, 2000); // 2 segundos
+
+        } catch (error: any) {
+            erro(error.message);
+        }
+    }
 
     return (
         <>
+            <ToastContainer />
             <main id={styles.main}>
                 <img src="../imgs/hamburguer_login.png" alt="Hambúrguer com ingredientes flutuando em camadas sobre fundo escuro." />
                 <div id={styles.campo_login}>
