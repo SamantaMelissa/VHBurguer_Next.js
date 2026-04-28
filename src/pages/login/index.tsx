@@ -2,16 +2,13 @@ import { useState } from "react";
 import styles from "./login.module.css";
 import { login } from "../api/authService";
 const Login = () => {
+    
     const [email, setEmail] = useState<string>("");
     const [senha, setSenha] = useState<string>("");
+
     function autenticar(e: React.FormEvent<HTMLFormElement>){
         e.preventDefault();
-        try{
-            login(email, senha);
-            console.log("tentei")
-        }catch(e: any){
-            alert(e.message);
-        }
+        login(email, senha);
     } 
 
     return (

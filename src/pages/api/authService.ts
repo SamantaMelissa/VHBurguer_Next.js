@@ -1,4 +1,5 @@
 import { api } from "./api";
+
 export async function login(email: string, senha: string){
     try{
         //requisição:
