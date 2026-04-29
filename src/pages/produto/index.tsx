@@ -1,8 +1,32 @@
 import Footer from "@/components/footer/footer";
 import SubHeader from "@/components/sub-header/sub-header"
 import styles from "./produto.module.css"
+import { useEffect, useState } from "react";
+import { listarCategoria } from "../api/categoriaService";
+
+interface Categoria{
+  categoriaID: number,
+  nome: string
+}
 
 const Produto = () => {
+
+  const[categorias, setCategorias] = useState<Categoria[]>([]);
+
+  async function listarCatagoriaEmProduto(){
+    const lista = await listarCategoria();
+    setCategorias(lista.data);
+    console.log(lista.data);
+  }
+
+  //quando produto for renderizado, a funcao listarCatagoriaEmProduto acontece
+  useEffect(()=>{
+    listarCatagoriaEmProduto();
+  }, [])
+
+
+
+
   return (
     <>
       <SubHeader />
@@ -25,9 +49,10 @@ const Produto = () => {
               <div className={styles.campo_form}>
                 <label htmlFor="">Categoria</label>
                 <select>
-                  <option value=""></option>
-                  <option value=""></option>
-                  <option value=""></option>
+                 {categorias.map((item) => (
+                  <option value={item.categoriaID} key={item.categoriaID}>{item.nome}</option>
+                 )
+                 )}
                 </select>
 
                 <a href="">Criar categoria</a>
