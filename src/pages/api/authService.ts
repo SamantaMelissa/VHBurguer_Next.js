@@ -1,7 +1,6 @@
 import { api } from "./api";
 import secureLocalStorage from "react-secure-storage";
 
-
 export async function login(email: string, senha: string){
     try{
         //requisição:

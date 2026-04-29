@@ -3,8 +3,9 @@ import { api } from "./api";
 export async function cadastrarCategoria(nome: string){
     try{
         await api.post("Categoria", {nome});
-        console.log("eba deu certo 🤗")
+        // console.log("eba deu certo 🤗")
     }catch(error: any){
-        throw new Error("Erro ao cadastrar categoria");
+        // console.log(error.response.data)
+        throw new Error(error.response.data);
     }
 }

@@ -10,7 +10,7 @@ const Login = () => {
     const [senha, setSenha] = useState<string>("");
 
     const router = useRouter();
-    const notificacao = (msg: string) => toast(msg);
+    const notificacao = (msg: string) => toast.success(msg);
     const erro = (msg: string) => toast.error(msg);
 
     async function autenticar(e: React.FormEvent<HTMLFormElement>) {
@@ -19,6 +19,7 @@ const Login = () => {
             await login(email, senha);
             notificacao("Login bem sucedido!")
 
+            //espera 2 segundos para redirecionar para a login
             setTimeout(() => {
                 router.push("/home");
             }, 2000); // 2 segundos
