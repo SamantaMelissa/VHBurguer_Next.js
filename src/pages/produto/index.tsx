@@ -4,6 +4,8 @@ import styles from "./produto.module.css"
 import { useEffect, useState } from "react";
 import { listarCategoria } from "../api/categoriaService";
 import { cadastrarProduto } from "../api/produtoService";
+import { erro, notificacao } from "@/utils/toast";
+import Toast from "@/components/toast/toast";
 
 interface Categoria {
   categoriaID: number,
@@ -38,9 +40,12 @@ const Produto = () => {
         categoriasId: categoriasSelecionadas
       }
 
-      cadastrarProduto(dados)
+      await cadastrarProduto(dados)
+
+      notificacao("Produto cadastrado!");
+
     }catch(error: any){
-      console.log(error.message)
+      erro(error.message);
     }
 
   }
@@ -53,6 +58,7 @@ const Produto = () => {
   return (
     <>
       <SubHeader />
+      <Toast/>
       <main className={styles.main_produto}>
         <section className={`${styles.section_flex} layout_guide`}>
           <h1>Criar produto</h1>
@@ -94,7 +100,7 @@ const Produto = () => {
                 }}
               />
             </div>
-            <button type="submit" id={styles.btn_salvar}>Salvar</button>
+            <button id={styles.btn_salvar}>Salvar</button>
           </form>
         </section>
       </main>
