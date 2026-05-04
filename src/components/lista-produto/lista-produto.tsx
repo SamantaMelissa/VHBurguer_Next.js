@@ -12,7 +12,7 @@ interface Produto{
     nome: string,
     preco: number,
     descricao: string
-    ImagemUrl: string
+    imagemUrl: string
 }
 
 const ListaProduto = () => {
@@ -52,7 +52,7 @@ const ListaProduto = () => {
                         titulo={item.nome}
                         descricao={item.descricao}
                         preco= {item.preco}
-                        img={item.ImagemUrl}
+                        img={item.imagemUrl}
                     />
                 )) : (
                     <p>Carregando produto...</p>

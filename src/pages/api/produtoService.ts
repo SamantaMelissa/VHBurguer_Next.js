@@ -5,7 +5,8 @@ type Produto = {
     descricao: string,
     preco: string,
     imagem: File | null,
-    categoriasId: number[]
+    categoriasId: number[],
+    imagemUrl: string
 }
 
 export async function cadastrarProduto(dados: Produto){
@@ -35,7 +36,12 @@ export async function listarProduto(){
     try{
         const response = await api.get("Produto");
 
-        return response.data;
+        const produtos = response.data.map((produto : Produto) => ({
+            ...produto,
+            imagemUrl: `${api.defaults.baseURL}${produto.imagemUrl}`
+        }))
+
+        return produtos;
 
     } catch(error: any){
         throw new Error(error.response.data);
