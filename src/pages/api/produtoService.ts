@@ -30,3 +30,14 @@ export async function cadastrarProduto(dados: Produto){
         throw new Error(error.response.data);
     }
 }
+
+export async function listarProduto(){
+    try{
+        const response = await api.get("Produto");
+
+        return response.data;
+
+    } catch(error: any){
+        throw new Error(error.response.data);
+    }
+}
