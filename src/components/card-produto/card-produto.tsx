@@ -1,18 +1,22 @@
 import { formatarPreco } from "@/utils/formatacao";
 import styles from "./card-produto.module.css"
+import Link from "next/link";
 
 type Produto = {
     titulo: string,
     descricao: string,
     img: string,
-    preco: number
+    preco: number,
+    produtoID: number
 }
 
-const CardProduto = ({titulo, descricao, img, preco} : Produto) => {
+const CardProduto = ({titulo, descricao, img, preco, produtoID} : Produto) => {
     return (
         <article className={styles.card_produto}>
-            <img src={img} alt="Produto vendido pela loja."
-                className={styles.img_produto} />
+            <Link href={"/detalhe-produto/" + produtoID}>
+                <img src={img} alt="Produto vendido pela loja."
+                    className={styles.img_produto} />
+            </Link>
             <h3 className={styles.titulo_produto}>{titulo}</h3>
             <p className={styles.desc_produto}>{descricao}</p>
             <div className={styles.campo_itens}>

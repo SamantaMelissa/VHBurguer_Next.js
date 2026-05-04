@@ -47,3 +47,19 @@ export async function listarProduto(){
         throw new Error(error.response.data);
     }
 }
+
+export async function listarPorId(id: number){
+    try {
+        const response = await api.get("Produto/" + id);
+
+        const produto = {
+            ...response.data,
+            imagemUrl: `${api.defaults.baseURL}${response.data.imagemUrl}`
+        };
+
+        return produto;
+        
+    } catch (error: any) {
+        throw new Error(error.response.data)
+    }
+}

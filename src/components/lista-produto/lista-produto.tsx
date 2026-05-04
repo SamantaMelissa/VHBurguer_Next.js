@@ -49,6 +49,7 @@ const ListaProduto = () => {
                 {produtos.length > 0 ? produtos.map((item) => (
                     <CardProduto 
                         key={item.produtoID}
+                        produtoID={item.produtoID}
                         titulo={item.nome}
                         descricao={item.descricao}
                         preco= {item.preco}
