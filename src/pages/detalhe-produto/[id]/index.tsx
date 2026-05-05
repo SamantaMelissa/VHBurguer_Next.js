@@ -11,8 +11,7 @@ interface Produto {
     descricao: string,
     preco: number,
     imagemUrl: string,
-    categorias: string[],
-    categoriaIds: number[]
+    categorias: string[]
 }
 
 const DetalheProduto = () => {
@@ -87,8 +86,8 @@ const DetalheProduto = () => {
                                         <div className={styles.campo}>
                                             <h2 className={styles.campo_titulo}>Categorias</h2>
                                             <ul className={styles.campo_lista}>
-                                                {produto.categorias.map((cat, id) => (
-                                                    <li key={id}>{cat}</li>
+                                                {produto.categorias.map((cat) => (
+                                                    <li key={cat}>{cat}</li>
                                                 ))}
                                             </ul>
                                         </div>
