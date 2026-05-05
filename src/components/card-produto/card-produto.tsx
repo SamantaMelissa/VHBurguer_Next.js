@@ -27,6 +27,9 @@ const CardProduto = ({titulo, descricao, img, preco, produtoID} : Produto) => {
                 <button>
                     <img src="/imgs/editar.svg" alt="ícone que representa edição" />
                 </button>
+                <Link href={"/historico/" + produtoID}>
+                    <img src="/imgs/info.svg" alt="ícone que representa edição" />
+                </Link>
             </div>
         </article>
     )
