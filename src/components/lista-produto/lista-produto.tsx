@@ -23,7 +23,7 @@ const ListaProduto = () => {
         try {
             const lista = await listarProduto();
             setProdutos(lista);
-            console.log(lista)
+            console.log(lista);
         } catch (error: any) {
             console.log(error.message)
         }
