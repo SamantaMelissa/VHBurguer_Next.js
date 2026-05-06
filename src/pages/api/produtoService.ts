@@ -1,22 +1,31 @@
 import { api } from "./api";
 
-type Produto = {
+//ProdutoFormulario => base para cadastro de prod
+type ProdutoFormulario = {
     nome: string,
     descricao: string,
     preco: string,
     imagem: File | null,
+    categoriasId: number[]
+}
+//ProdutoListagem => base para receber o produto da api
+interface ProdutoListagem {
+    nome: string,
+    descricao: string,
+    preco: string,
     categoriasId: number[],
-    imagemUrl: string
+    imagemUrl: string,
+    statusProduto: boolean
 }
 
-export async function cadastrarProduto(dados: Produto){
-    try{
+export async function cadastrarProduto(dados: ProdutoFormulario) {
+    try {
         const formData = new FormData();
 
         formData.append("nome", dados.nome);
         formData.append("descricao", dados.descricao);
         formData.append("preco", dados.preco);
-        if(dados.imagem){
+        if (dados.imagem) {
             formData.append("imagem", dados.imagem);
         }
         dados.categoriasId.forEach((id) => {
@@ -27,28 +36,34 @@ export async function cadastrarProduto(dados: Produto){
 
         // console.log("eba deu bom!! 🍔🥳🤪😎")
 
-    }catch(error: any){
+    } catch (error: any) {
         throw new Error(error.response.data);
     }
 }
 
-export async function listarProduto(){
-    try{
+export async function listarProduto() {
+    try {
         const response = await api.get("Produto");
 
-        const produtos = response.data.map((produto : Produto) => ({
+        // filtra somente produtos ativos
+        const produtosAtivos = response.data.filter(
+            (produto: ProdutoListagem) => produto.statusProduto === true
+        );
+
+        // adiciona URL completa da imagem
+        const produtos = produtosAtivos.map((produto: ProdutoListagem) => ({
             ...produto,
             imagemUrl: `${api.defaults.baseURL}${produto.imagemUrl}`
-        }))
+        }));
 
         return produtos;
 
-    } catch(error: any){
+    } catch (error: any) {
         throw new Error(error.response.data);
     }
 }
 
-export async function listarPorId(id: number){
+export async function listarPorId(id: number) {
     try {
         const response = await api.get("Produto/" + id);
 
@@ -58,13 +73,13 @@ export async function listarPorId(id: number){
         };
 
         return produto;
-        
+
     } catch (error: any) {
         throw new Error(error.response.data)
     }
 }
 
-export async function excluirProduto(produtoId : number){
+export async function excluirProduto(produtoId: number) {
     try {
         await api.delete("Produto/" + produtoId)
     } catch (error: any) {

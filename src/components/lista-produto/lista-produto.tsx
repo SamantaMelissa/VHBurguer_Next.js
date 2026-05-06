@@ -6,19 +6,20 @@ import Link from "next/link";
 import Produto from "@/pages/produto";
 import { useEffect, useState } from "react";
 import { excluirProduto, listarProduto } from "@/pages/api/produtoService";
-import { erro, toastConfirmarExclusao } from "@/utils/toast";
+import { erro, notificacao, toastConfirmarExclusao } from "@/utils/toast";
 
-interface Produto{
+interface Produto {
     produtoID: number,
     nome: string,
     preco: number,
-    descricao: string
-    imagemUrl: string
+    descricao: string,
+    imagemUrl: string,
+    statusProduto: boolean
 }
 
 const ListaProduto = () => {
 
-    const[produtos, setProdutos] = useState<Produto[]>([]);
+    const [produtos, setProdutos] = useState<Produto[]>([]);
 
     async function listar() {
         try {
@@ -34,7 +35,16 @@ const ListaProduto = () => {
         toastConfirmarExclusao(async () => {
             try {
                 await excluirProduto(produtoId);
-                
+
+                setProdutos((listaAtual) =>
+                    listaAtual.map((produto) => 
+                        produto.produtoID === produtoId 
+                            ? {...produto, statusProduto: false}
+                            : produto
+                    )
+                )
+
+                notificacao("Produto inativado!")
             } catch (error: any) {
                 erro(error.message)
             }
@@ -43,7 +53,7 @@ const ListaProduto = () => {
 
     useEffect(() => {
         listar();
-    }, [])
+    }, [produtos])
 
     return (
         <>
@@ -59,12 +69,12 @@ const ListaProduto = () => {
             </div>
             <div id={styles.cards_produtos}>
                 {produtos.length > 0 ? produtos.map((item) => (
-                    <CardProduto 
+                    <CardProduto
                         key={item.produtoID}
                         produtoID={item.produtoID}
                         titulo={item.nome}
                         descricao={item.descricao}
-                        preco= {item.preco}
+                        preco={item.preco}
                         img={item.imagemUrl}
                         onDelete={confirmarExclusao}
                     />
