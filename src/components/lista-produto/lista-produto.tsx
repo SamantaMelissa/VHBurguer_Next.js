@@ -5,7 +5,8 @@ import { faSliders } from '@fortawesome/free-solid-svg-icons'
 import Link from "next/link";
 import Produto from "@/pages/produto";
 import { useEffect, useState } from "react";
-import { listarProduto } from "@/pages/api/produtoService";
+import { excluirProduto, listarProduto } from "@/pages/api/produtoService";
+import { erro, toastConfirmarExclusao } from "@/utils/toast";
 
 interface Produto{
     produtoID: number,
@@ -27,6 +28,17 @@ const ListaProduto = () => {
         } catch (error: any) {
             console.log(error.message)
         }
+    }
+
+    function confirmarExclusao(produtoId: number) {
+        toastConfirmarExclusao(async () => {
+            try {
+                await excluirProduto(produtoId);
+                
+            } catch (error: any) {
+                erro(error.message)
+            }
+        })
     }
 
     useEffect(() => {
@@ -54,6 +66,7 @@ const ListaProduto = () => {
                         descricao={item.descricao}
                         preco= {item.preco}
                         img={item.imagemUrl}
+                        onDelete={confirmarExclusao}
                     />
                 )) : (
                     <p>Carregando produto...</p>

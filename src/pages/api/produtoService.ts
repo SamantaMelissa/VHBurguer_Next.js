@@ -63,3 +63,11 @@ export async function listarPorId(id: number){
         throw new Error(error.response.data)
     }
 }
+
+export async function excluirProduto(produtoId : number){
+    try {
+        await api.delete("Produto/" + produtoId)
+    } catch (error: any) {
+        throw new Error(error.response.data)
+    }
+}

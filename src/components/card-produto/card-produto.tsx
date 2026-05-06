@@ -7,10 +7,12 @@ type Produto = {
     descricao: string,
     img: string,
     preco: number,
-    produtoID: number
+    produtoID: number,
+    //Criando uma props que recebe uma função
+    onDelete: (produtoId: number) => void
 }
 
-const CardProduto = ({titulo, descricao, img, preco, produtoID} : Produto) => {
+const CardProduto = ({titulo, descricao, img, preco, produtoID, onDelete } : Produto) => {
     return (
         <article className={styles.card_produto}>
             <Link href={"/detalhe-produto/" + produtoID}>
@@ -21,7 +23,7 @@ const CardProduto = ({titulo, descricao, img, preco, produtoID} : Produto) => {
             <p className={styles.desc_produto}>{descricao}</p>
             <div className={styles.campo_itens}>
                 <p className={styles.valor_produto}>{formatarPreco(preco)}</p>
-                <button>
+                <button onClick={() => onDelete(produtoID)}>
                     <img src="/imgs/trash.svg" alt="ícone que representa exclusão" />
                 </button>
                 <button>
