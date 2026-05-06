@@ -26,9 +26,9 @@ const CardProduto = ({titulo, descricao, img, preco, produtoID, onDelete } : Pro
                 <button onClick={() => onDelete(produtoID)}>
                     <img src="/imgs/trash.svg" alt="ícone que representa exclusão" />
                 </button>
-                <button>
+                <Link href={"/produto?id="+produtoID}>
                     <img src="/imgs/editar.svg" alt="ícone que representa edição" />
-                </button>
+                </Link>
                 <Link href={"/historico/" + produtoID}>
                     <img src="/imgs/info.svg" alt="ícone que representa edição" />
                 </Link>

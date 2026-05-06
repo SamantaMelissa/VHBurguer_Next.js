@@ -45,6 +45,7 @@ const ListaProduto = () => {
                 )
 
                 notificacao("Produto inativado!")
+                listar();
             } catch (error: any) {
                 erro(error.message)
             }
@@ -53,7 +54,7 @@ const ListaProduto = () => {
 
     useEffect(() => {
         listar();
-    }, [produtos])
+    }, [])
 
     return (
         <>
